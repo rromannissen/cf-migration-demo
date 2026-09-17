@@ -1,0 +1,4 @@
+ordersspring has been deployed.
+
+Get the application URL via OpenShift Route:
+  oc get route ordersspring -o jsonpath='{.spec.host}'

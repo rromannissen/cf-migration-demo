@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ordersspring-source
+  labels:
+    helm.sh/chart: quickstart-openshift-pipelines-0.1.0
+    app.kubernetes.io/name: ordersspring
+    app.kubernetes.io/instance: ordersspring
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+    konveyor.io/business-service: "Retail"
+    konveyor.io/archetype: "Spring Boot"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ordersspring-config
+  labels:
+    helm.sh/chart: quickstart-openshift-pipelines-0.1.0
+    app.kubernetes.io/name: ordersspring
+    app.kubernetes.io/instance: ordersspring
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+    konveyor.io/business-service: "Retail"
+    konveyor.io/archetype: "Spring Boot"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi

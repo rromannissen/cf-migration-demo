@@ -1,0 +1,33 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ordersspring
+  namespace: openshift-gitops
+  labels:
+    helm.sh/chart: quickstart-openshift-gitops-0.1.0
+    app.kubernetes.io/name: ordersspring
+    app.kubernetes.io/instance: ordersspring
+    app.kubernetes.io/version: "1.0.0"
+    app.kubernetes.io/managed-by: Helm
+    konveyor.io/business-service: "Retail"
+    konveyor.io/archetype: "Spring Boot"
+  annotations:
+    konveyor.io/config-repository: https://github.com/rromannissen/cf-migration-demo.git
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rromannissen/cf-migration-demo.git
+    targetRevision: HEAD
+    path: /
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ordersspring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
